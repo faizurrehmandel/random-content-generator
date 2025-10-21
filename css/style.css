@@ -1,0 +1,208 @@
+/* ==========================================================================
+   Random Content Generator - style.css
+   Author: AI Assistant
+   Description: Stylesheet for a single-page random quote generator.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Variables & Root Styles
+   - Defines global variables for colors, fonts, and transitions for easy
+     theming and maintenance.
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* This theme color will be updated dynamically by JavaScript */
+  --theme-color: #342224;
+
+  /* Typography */
+  --font-family-primary: 'Raleway', sans-serif;
+  --font-family-quote: 'Lora', serif;
+
+  /* Transitions */
+  --transition-speed-fast: 0.3s;
+  --transition-speed-slow: 0.8s;
+}
+
+/* --------------------------------------------------------------------------
+   2. Basic Reset & General Styles
+   - A simple reset to remove default browser styles.
+   - Sets up the base styles for the body and typography.
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px; /* Base font size: 1rem = 16px */
+}
+
+body {
+  font-family: var(--font-family-primary);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--theme-color);
+  background-color: var(--theme-color);
+
+  /* Center the main content both vertically and horizontally */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+
+  /* Smooth transition for background and text color changes */
+  transition: background-color var(--transition-speed-slow) ease-in-out,
+              color var(--transition-speed-slow) ease-in-out;
+}
+
+/* --------------------------------------------------------------------------
+   3. Main Quote Box Layout
+   - Styles for the main container that holds the quote and controls.
+   -------------------------------------------------------------------------- */
+
+#quote-box {
+  position: relative;
+  width: 100%;
+  max-width: 550px;
+  padding: 40px 50px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   4. Typography & Content Styling
+   - Styles for the quote text, author, and associated elements.
+   -------------------------------------------------------------------------- */
+
+#text-container {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+#text {
+  font-family: var(--font-family-quote);
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: var(--theme-color);
+  transition: color var(--transition-speed-slow) ease-in-out,
+              opacity var(--transition-speed-fast) ease-in-out;
+}
+
+/* Adding quote icons using pseudo-elements */
+#text::before {
+  content: '\201C'; /* Left double quotation mark */
+  margin-right: 0.25em;
+}
+
+#text::after {
+  content: '\201D'; /* Right double quotation mark */
+  margin-left: 0.25em;
+}
+
+#author {
+  display: block;
+  text-align: right;
+  margin-top: 20px;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--theme-color);
+  transition: color var(--transition-speed-slow) ease-in-out,
+              opacity var(--transition-speed-fast) ease-in-out;
+}
+
+#author::before {
+  content: '— ';
+}
+
+/* Helper class for fade-in/out effect (toggled with JavaScript) */
+.fade-out {
+  opacity: 0;
+}
+
+/* --------------------------------------------------------------------------
+   5. Buttons & Controls
+   - Styles for the "New Quote" button and social media share links.
+   -------------------------------------------------------------------------- */
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+
+/* Common style for all buttons and links in the controls area */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 18px;
+  color: #fff;
+  background-color: var(--theme-color);
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color var(--transition-speed-slow) ease-in-out,
+              opacity var(--transition-speed-fast) ease-in-out;
+}
+
+.button:hover {
+  opacity: 0.85;
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+.social-links .button {
+  margin-right: 8px;
+  padding: 10px 12px;
+  font-size: 1.2rem; /* Larger font size for icons */
+}
+
+/* --------------------------------------------------------------------------
+   6. Media Queries for Responsiveness
+   - Adjusts the layout and typography for smaller screen sizes.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 600px) {
+  #quote-box {
+    padding: 30px 25px;
+  }
+
+  #text {
+    font-size: 1.5rem;
+  }
+
+  #author {
+    font-size: 0.9rem;
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+
+  .social-links {
+    margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+  }
+
+  .social-links .button {
+    flex-grow: 1; /* Make social links share space equally */
+    text-align: center;
+  }
+
+  #new-quote {
+    width: 100%;
+  }
+}
